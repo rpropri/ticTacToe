@@ -43,7 +43,7 @@ const checkForWin = (player, cell) => {
 for (let i = 1; i <= 9; i++) {
   document.getElementById(`cell${i}`).addEventListener("click", () => {
     let player = playX ? 'X' : 'O';
-    if (document.getElementById(`cell${i}`).innerHTML === "") {
+    if (plays[i-1] === "") {
       document.getElementById(`cell${i}`).innerHTML = player;
       plays[i-1] = player;
       playCount++;
