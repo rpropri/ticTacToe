@@ -65,7 +65,7 @@ const init = () => {
   playX = true;
   playCount = 0;
   for (let j = 1; j <= 9; j++) {
-    plays[j] = "";
+    plays[j-1] = "";
     document.getElementById(`cell${j}`).innerHTML = "";
   }
 }
