@@ -1,53 +1,77 @@
-// user input *******************************************************
+// app state ********************************************************
 let playX = true;
+let playCount = 0;
+const plays = ['', '', '', '', '', '', '', '', ''];
 
-document.getElementById("cell11").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell11").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell12").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell12").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell13").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell13").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell21").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  console.log('player:', player);
-  document.getElementById("cell21").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell22").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell22").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell23").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell23").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell31").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell31").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell32").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell32").innerHTML = player;
-  playX = !playX;
-});
-document.getElementById("cell33").addEventListener("click", () => {
-  let player = playX ? 'X' : 'O';
-  document.getElementById("cell33").innerHTML = player;
-  playX = !playX;
-});
+const checkForWin = (player, cell) => {
+  if (playCount >= 5) {
+    // first column
+    if (plays[0] === player && plays[3] === player && plays[6] === player) {
+      return true;
+    }
+    // second column
+    if (plays[1] === player && plays[4] === player && plays[7] === player) {
+      return true;
+    }
+    // third column
+    if (plays[2] === player && plays[5] === player && plays[8] === player) {
+      return true;
+    }
+
+    if (plays[0] === player && plays[1] === player && plays[2] === player) {
+      return true;
+    }
+    if (plays[3] === player && plays[4] === player && plays[5] === player) {
+      return true;
+    }
+    if (plays[6] === player && plays[7] === player && plays[8] === player) {
+      return true;
+    }
+
+    // check diag
+    if (plays[0] === player && plays[4] === player && plays[8] === player) {
+      return true;
+    }
+    if (plays[2] === player && plays[4] === player && plays[6] === player) {
+      return true;
+    }
+  }
+  return false;
+};
+
+// user input *******************************************************
+for (let i = 1; i <= 9; i++) {
+  document.getElementById(`cell${i}`).addEventListener("click", () => {
+    let player = playX ? 'X' : 'O';
+    if (document.getElementById(`cell${i}`).innerHTML === "") {
+      document.getElementById(`cell${i}`).innerHTML = player;
+      plays[i-1] = player;
+      playCount++;
+      if (checkForWin(player, i)) {
+        alert(`Player ${player} wins!`);
+      } else {
+        if (playCount === 9) {
+          alert(`Game ended in a scratch. Nobody wins.`);
+        } else {
+          playX = !playX;
+
+        }
+      }
+    }
+  });    
+}
+
+const init = () => {
+  playX = true;
+  playCount = 0;
+  for (let j = 1; j <= 9; j++) {
+    plays[j] = "";
+    document.getElementById(`cell${j}`).innerHTML = "";
+  }
+}
+
+document.getElementById("reset").addEventListener("click", init);
+
 // rendering views **************************************************
 
 
-// app state ********************************************************

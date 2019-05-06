@@ -8,5 +8,6 @@ div.cell {
   height: 100px;
   display: inline-block;
   border: 2px solid #222222;
-  padding: 50px 50px 50px 50px
+  padding: 50px 50px 50px 50px;
+  text-align: center
 }
