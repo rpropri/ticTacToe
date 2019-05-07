@@ -11,3 +11,12 @@ div.grid-container {
   justify-content: center;
   text-align: center;
 }
+
+div#info {
+
+}
+
+div#info > p {
+  display: inline-block;
+  padding: 10px 10px 20px 10px
+}

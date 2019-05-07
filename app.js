@@ -2,6 +2,9 @@
 let playX = true;
 let playCount = 0;
 let hasWon = false;
+let games = 0;
+let winsForX = 0;
+let winsForO = 0;
 const plays = ['', '', '', '', '', '', '', '', ''];
 
 const checkForWin = (player) => {
@@ -59,6 +62,8 @@ const highlight = (a, b, c) => {
 
 const endGame = (won, player) => {
   if (won) {
+    player === 'X' && winsForX++ || winsForO++;
+    updateScore(player);
     document.getElementById("message").innerHTML = `Player ${player} won this game!`;
   } else {
     document.getElementById("message").innerHTML = `You both lose, suckaz.`;
@@ -85,6 +90,10 @@ const playTurn = (e) => {
   }
 };
 
+const updateScore = (player) => {
+  document.getElementById(`${player}-score`).innerHTML = player ? winsForX: winsForO;
+}
+
 // user input *******************************************************
 document.getElementById("board").addEventListener("click", function(e) {
   playTurn(e);
@@ -103,5 +112,3 @@ const init = () => {
 }
 
 document.getElementById("reset").addEventListener("click", init);
-
-
