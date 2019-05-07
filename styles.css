@@ -1,19 +1,37 @@
+body {
+  background-color: #d6e5f1
+}
+#wrapper {
+  display: flexbox;
+  text-align: center
+}
+p {
+  display: inline-block;
+  font-size: 24pt;
+  padding: 10px 10px 20px 30px
+}
+button {
+  font-size: 16pt;
+  padding: 10px;
+}
+.score-wrapper {
+  display: -webkit-inline-box;
+}
+.score {
+  background-color: aliceblue;
+  border-style: inset
+}
 .grid-container > div {
   text-align: center;
   border: 1px solid #222222;
-  font-size: 24pt
+  font-size: 24pt;
+  padding: 20px
 }
-
 div.grid-container {
   display: inline-grid;
-  grid-template-columns: 100px 100px 100px;
-  grid-template-rows: 100px 100px 100px;
-  justify-content: center;
+  background-color: aliceblue;
+  grid-template-columns: 150px 150px 150px;
+  grid-template-rows: 150px 150px 150px;
+  justify-content: space-around;
   text-align: center;
-}
-
-div#info > p {
-  display: inline-block;
-  font-size: 16pt;
-  padding: 10px 10px 20px 10px
 }

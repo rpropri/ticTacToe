@@ -1,4 +1,3 @@
-// app state ********************************************************
 let playX = true;
 let playCount = 0;
 let hasWon = false;
@@ -55,16 +54,16 @@ const checkForWin = (player) => {
 };
 
 const highlight = (a, b, c) => {
-  document.getElementById(`${a + 1}`).style.backgroundColor = 'lime';
-  document.getElementById(`${b + 1}`).style.backgroundColor = 'lime';
-  document.getElementById(`${c + 1}`).style.backgroundColor = 'lime';
+  document.getElementById(`${a + 1}`).style.backgroundColor = '#c2fac2';
+  document.getElementById(`${b + 1}`).style.backgroundColor = '#c2fac2';
+  document.getElementById(`${c + 1}`).style.backgroundColor = '#c2fac2';
 };
 
 const endGame = (won, player) => {
   if (won) {
     player === 'X' && winsForX++ || winsForO++;
     updateScore(player);
-    document.getElementById("message").innerHTML = `Player ${player} won this game!`;
+    document.getElementById("message").innerHTML = `${player === 'X' ? 'Tictacs': 'Toes'} won this game!`;
   } else {
     ties++;
     updateScore(null);
@@ -73,11 +72,10 @@ const endGame = (won, player) => {
   hasWon = true;
 }
 
-// rendering views **************************************************
 const playTurn = (e) => {
   let player = playX ? 'X': 'O';
   if (plays[e.target.id - 1] === "" && !hasWon) {
-    e.target.innerHTML = player;
+    place(player, e);
     plays[e.target.id - 1] = player;
     playCount++;
     if (checkForWin(player) === true) {
@@ -92,15 +90,26 @@ const playTurn = (e) => {
   }
 };
 
+const place = (player, e) => {
+  if (player === 'X') {
+    const tictacs = new Image(110, 110);
+    tictacs.src = 'tictacs.jpg';
+    e.target.append(tictacs);
+  } else {
+    const toes = new Image(110, 110);
+    toes.src = 'toes.jpg';
+    e.target.append(toes);
+  }
+};
+
 const updateScore = (player) => {
   if (player) {
-    document.getElementById(`${player}-score`).innerHTML = player ? winsForX: winsForO;
+    document.getElementById(`${player}-score`).innerHTML = player === 'X' ? winsForX: winsForO;
   } else {
     document.getElementById(`ties`).innerHTML = ties;
   }
 }
 
-// user input *******************************************************
 document.getElementById("board").addEventListener("click", function(e) {
   playTurn(e);
 });
@@ -113,8 +122,9 @@ const init = () => {
   for (let j = 1; j <= 9; j++) {
     plays[j-1] = "";
     document.getElementById(`${j}`).innerHTML = "";
-    document.getElementById(`${j}`).style.backgroundColor = "white";
+    document.getElementById(`${j}`).style.backgroundColor = "aliceblue";
   }
 }
 
 document.getElementById("reset").addEventListener("click", init);
+init();
