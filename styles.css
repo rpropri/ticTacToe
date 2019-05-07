@@ -1,7 +1,7 @@
 .grid-container > div {
   text-align: center;
   border: 1px solid #222222;
-  font-size: 30px
+  font-size: 24pt
 }
 
 div.grid-container {
@@ -12,11 +12,8 @@ div.grid-container {
   text-align: center;
 }
 
-div#info {
-
-}
-
 div#info > p {
   display: inline-block;
+  font-size: 16pt;
   padding: 10px 10px 20px 10px
 }

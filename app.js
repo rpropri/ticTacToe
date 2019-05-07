@@ -2,7 +2,7 @@
 let playX = true;
 let playCount = 0;
 let hasWon = false;
-let games = 0;
+let ties = 0;
 let winsForX = 0;
 let winsForO = 0;
 const plays = ['', '', '', '', '', '', '', '', ''];
@@ -66,6 +66,8 @@ const endGame = (won, player) => {
     updateScore(player);
     document.getElementById("message").innerHTML = `Player ${player} won this game!`;
   } else {
+    ties++;
+    updateScore(null);
     document.getElementById("message").innerHTML = `You both lose, suckaz.`;
   }
   hasWon = true;
@@ -91,7 +93,11 @@ const playTurn = (e) => {
 };
 
 const updateScore = (player) => {
-  document.getElementById(`${player}-score`).innerHTML = player ? winsForX: winsForO;
+  if (player) {
+    document.getElementById(`${player}-score`).innerHTML = player ? winsForX: winsForO;
+  } else {
+    document.getElementById(`ties`).innerHTML = ties;
+  }
 }
 
 // user input *******************************************************
